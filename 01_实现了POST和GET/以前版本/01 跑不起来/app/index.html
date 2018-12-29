@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>React with JSX Samples</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+<script src="https://unpkg.com/prop-types/prop-types.js"></script>
+
+</head>
+<body>
+<div id="root"></div>
+
+
+
+ <script
+      type="text/babel"
+      data-plugins="transform-class-properties">
+
+class Show extends React.Component {
+    state = {
+        sensReact: [],
+        senInEdit: ''
+    }
+
+    handleChange = ev => {
+        this.setState({
+            senInEdit: ev.target.value
+        })
+    }
+    
+    componentDidMount() {
+        axios.get('/api/sens')
+        .then(res => {
+            console.log(res);
+            //this.setState({sensReact: res.data});
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    }
+    
+    handleSubmit = () => {
+        const sensCurrent = this.state.sensReact;
+        const newSens = [...sensCurrent, this.state.senInEdit];
+        
+        axios.post('/api/sens', newSens)
+        .then(res => console.log(res));
+        
+        this.setState({
+            sensReact: newSens,
+            senInEdit: ''
+        });
+    }
+
+    render() {
+        const {
+            sensReact,
+            senInEdit
+        } = this.state;
+        
+        return (
+            
+    <div>
+                
+        <ol>
+            
+        {sensReact.map((sen, index) => {
+            return <li key={index}>{ sen }</li>        
+        })}
+            
+        </ol>
+                
+        <input 
+        type='text'
+        onChange={this.handleChange} 
+        value={senInEdit}
+        />
+                
+        <button onClick={this.handleSubmit}>
+        点击发送
+        </button>  
+                
+    </div>
+        )
+    }
+}
+    
+ReactDOM.render(
+    <Show />,
+    document.getElementById('root')
+)
+    
+</script>
+
+</body>
+</html>
