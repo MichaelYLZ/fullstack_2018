@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js"
   },
-  "keywords": ["react", "express", 'MongoDB', "全栈"],
+  "keywords": ["react", "express", "MongoDB", "全栈"],
   "author": "",
   "license": "ISC",
   "dependencies": {
