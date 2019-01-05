@@ -1,12 +1,12 @@
 {
-  "name": "zz",
+  "name": "练习使用数据库",
   "version": "1.0.0",
-  "description": "",
+  "description": "这个文件夹只是构建好的版本，没有完整的源码。这是在探索，练习使用数据库",
   "main": "index.js",
   "scripts": {
     "start": "node server.js"
   },
-  "keywords": [],
+  "keywords": ["MongoDB", "Express"],
   "author": "",
   "license": "ISC",
   "dependencies": {
